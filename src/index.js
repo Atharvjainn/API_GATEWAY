@@ -17,6 +17,12 @@ const startupserver = async() => {
     app.use(morgan('combined'))
     app.use(limiter)
 
+    app.get('/home',(req,res) => {
+        return res.status(200).json({
+            message : "success"
+        })
+    })
+
     app.use('/bookingservice',async(req,res,next) => {
         try {
             const response = await axios.get('http://localhost:3001/api/v1/isAuthenticated',{
