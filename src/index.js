@@ -23,22 +23,22 @@ const startupserver = async() => {
         })
     })
 
-    app.use('/bookingservice',async(req,res,next) => {
-        try {
-            const response = await axios.get('http://localhost:3001/api/v1/isAuthenticated',{
-            headers : {
-                "x-access-token" : req.headers['x-access-token']
-            }
-        })
-            console.log(response.data);
-            next()
-        } catch (error) {
-            return res.status(401).json({
-                message : "not authorised"
-            })
-        }
-    })
-    app.use('/bookingservice',createProxyMiddleware({target : "http://localhost:3002/",changeOrigin : true}))
+    // app.use('/bookingservice',async(req,res,next) => {
+    //     try {
+    //         const response = await axios.get('http://localhost:3001/api/v1/isAuthenticated',{
+    //         headers : {
+    //             "x-access-token" : req.headers['x-access-token']
+    //         }
+    //     })
+    //         console.log(response.data);
+    //         next()
+    //     } catch (error) {
+    //         return res.status(401).json({
+    //             message : "not authorised"
+    //         })
+    //     }
+    // })
+    // app.use('/bookingservice',createProxyMiddleware({target : "http://localhost:3002/",changeOrigin : true}))
 
     app.listen(PORT, '0.0.0.0' ,() => {
         console.log("server started");
