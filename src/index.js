@@ -40,7 +40,7 @@ const startupserver = async() => {
     })
     app.use('/bookingservice',createProxyMiddleware({target : "http://localhost:3002/",changeOrigin : true}))
 
-    app.listen(PORT,() => {
+    app.listen(PORT, '0.0.0.0' ,() => {
         console.log("server started");
     })
 
